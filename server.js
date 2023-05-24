@@ -43,12 +43,16 @@ app.use("/api/v1/blogs", createBlog);
 app.use("/api/v1/fetchBlogs", fetchBlogs);
 app.use("/api/v1/blogOperations", blogOperations);
 // Serve static files in production
+// Serve static files in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("frontend/build"));
+  const frontendBuildPath = path.join(__dirname, "frontend", "build");
+  app.use(express.static(frontendBuildPath));
+
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+    res.sendFile(path.resolve(frontendBuildPath, "index.html"));
   });
 }
+
 
 // Start the server
 app.listen(PORT, () => {
