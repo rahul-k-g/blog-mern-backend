@@ -21,10 +21,11 @@ app.use(express.urlencoded({ extended: true }));
 // Enable CORS
 app.use(
   cors({
-    origin: "https://blog-mern-frontend.onrender.com/",
+    origin: "https://blog-mern-frontend.onrender.com",
     credentials: true,
   })
 );
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.URL, {
